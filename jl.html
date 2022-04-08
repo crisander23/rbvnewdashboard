@@ -1,0 +1,3378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="img/logo/logo.png" rel="icon">
+  <title>RuangAdmin - DataTables</title>
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="img/logo/logo2.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">RBV Scholar Dashboard</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Pegaxy
+      </div>
+
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span>
+        </a>
+        <div id="collapseTable" class="collapse show" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Scholars</h6>
+          
+            <a class="collapse-item active" href="index.html">All Scholars</a>
+            <a class="collapse-item active" href="deks.html">Deks' Scholars</a>
+            <a class="collapse-item active" href="secret.html">Secret's Scholars</a>
+            <a class="collapse-item active" href="jl.html">JL's Scholars</a>
+            <a class="collapse-item active" href="mcnuggets.html">McNuggets' Scholars</a>
+          </div>
+        </div>
+      </li>
+   
+
+    </ul>
+    <!-- Sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+       
+        <!-- Topbar -->
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">JL</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item">Tables</li>
+              <li class="breadcrumb-item active" aria-current="page">DataTables</li>
+            </ol>
+          </div>
+
+          <!-- Row -->
+          <div class="row">
+            <!-- Datatables -->
+           
+            <!-- DataTable with Hover -->
+            <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Scholars</h6>
+                </div>
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Scholar</th>
+                        <th>Metamask Address</th>
+                        <th>Pega ID</th>
+                        <th>Status</th>
+                        <th>Energy Checker</th>
+                        <th>Winrate</th>
+                      </tr>
+                    </thead>
+                <tfoot>
+                  <tr>
+                    <th>Scholar</th>
+                    <th>Metamask Address</th>
+                    <th>Pega ID</th>
+                    <th>Status</th>
+                    <th>Energy Checker</th>
+                    <th>Winrate</th>
+                  </tr>
+                </tfoot>
+                 
+                    <tbody>
+                      <tr>
+                        <td>aarrroooonnnnn#3108
+                          <p class="text-xs text-secondary mb-0">RBV | aarrroooonnnnn</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xC1B81D4bbF7C29c8d8c7BE03F78e59e9CD9f90f7</td>
+                        <td>
+                          <h6>373707</h6>
+                          <h6>373649</h6>
+                          <h6>373618</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aronstatus1"></h6>
+                          <h6 id="aronstatus2"></h6>
+                          <h6 id="aronstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aronenergy1"></h6>
+                          <h6 id="aronenergy2"></h6>
+                          <h6 id="aronenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aronwr1"></h6>
+                          <h6 id="aronwr2"></h6>
+                          <h6 id="aronwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/373707')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#aronenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#aronstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#aronwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/373649')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aronenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#aronstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#aronwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/373618')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aronenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#aronstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#aronwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Dem#6190
+                          <p class="text-xs text-secondary mb-0">RBV | Anbu</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xF0D3b3A78A4fA31d17A556d9527c79007f00B978</td>
+                        <td>
+                          <h6>419192</h6>
+                          <h6>419150</h6>
+                          <h6>419122</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="anbustatus1"></h6>
+                          <h6 id="anbustatus2"></h6>
+                          <h6 id="anbustatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="anbuenergy1"></h6>
+                          <h6 id="anbuenergy2"></h6>
+                          <h6 id="anbuenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="anbuwr1"></h6>
+                          <h6 id="anbuwr2"></h6>
+                          <h6 id="anbuwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/419192')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#anbuenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#anbustatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#anbuwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/419150')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#anbuenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#anbustatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#anbuwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/419122')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#anbuenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#anbustatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#anbuwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>aiesha#6605
+                          <p class="text-xs text-secondary mb-0">RBV | aiesha</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xE9214E03e523A72EdF442415623AD8c007A3F4cb</td>
+                        <td>
+                          <h6>369772</h6>
+                          <h6>369708</h6>
+                          <h6>368127</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aieshastatus1"></h6>
+                          <h6 id="aieshastatus2"></h6>
+                          <h6 id="aieshastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aieshaenergy1"></h6>
+                          <h6 id="aieshaenergy2"></h6>
+                          <h6 id="aieshaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aieshawr1"></h6>
+                          <h6 id="aieshawr2"></h6>
+                          <h6 id="aieshawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/369772')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#aieshaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#aieshastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#aieshawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/369708')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aieshaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#aieshastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#aieshawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/368127')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aieshaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#aieshastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#aieshawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Ernest#7767
+                          <p class="text-xs text-secondary mb-0">RBV | Ernest</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x940FD71698Db995A97230E4b142aFB0421c22694 </td>
+                        <td>
+                          <h6>418752</h6>
+                          <h6>300143</h6>
+                          <h6></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="erneststatus1"></h6>
+                          <h6 id="erneststatus2"></h6>
+                          <h6 id="erneststatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ernestenergy1"></h6>
+                          <h6 id="ernestenergy2"></h6>
+                          <h6 id="ernestenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ernestwr1"></h6>
+                          <h6 id="ernestwr2"></h6>
+                          <h6 id="ernestwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/418752')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#ernestenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#erneststatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#ernestwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/300143')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ernestenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#erneststatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#ernestwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ernestenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#erneststatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#ernestwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Anna10#5161
+                          <p class="text-xs text-secondary mb-0">RBV | Anna10</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x950B5a419998915406eeaD7033cA49a1Ec172b4b</td>
+                        <td>
+                          <h6>396498</h6>
+                          <h6>403466</h6>
+                          <h6>417770</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="annastatus1"></h6>
+                          <h6 id="annastatus2"></h6>
+                          <h6 id="annastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="annaenergy1"></h6>
+                          <h6 id="annaenergy2"></h6>
+                          <h6 id="annaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="annawr1"></h6>
+                          <h6 id="annawr2"></h6>
+                          <h6 id="annawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/396498')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#annaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#annastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#annawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/403466')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#annaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#annastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#annawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/417770')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#annaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#annastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#annawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>ayps#1066
+                          <p class="text-xs text-secondary mb-0">RBV | Ayps</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x45CBAA167e492a214138e32C5D66790e13243dFd</td>
+                        <td>
+                          <h6>358371</h6>
+                          <h6>357439</h6>
+                          <h6>361191</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aypsstatus1"></h6>
+                          <h6 id="aypsstatus2"></h6>
+                          <h6 id="aypsstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aypsenergy1"></h6>
+                          <h6 id="aypsenergy2"></h6>
+                          <h6 id="aypsenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="aypswr1"></h6>
+                          <h6 id="aypswr2"></h6>
+                          <h6 id="aypswr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/358371')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#aypsenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#aypsstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#aypswr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/357439')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aypsenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#aypsstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#aypswr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/361191')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#aypsenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#aypsstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#aypswr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>ewickuh#7214
+                          <p class="text-xs text-secondary mb-0">RBV | Ewickuh</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x8c064c79bD1A1FEaB647c5b3cf0de4dC2996A4A6</td>
+                        <td>
+                          <h6>374936</h6>
+                          <h6>374599</h6>
+                          <h6>374304</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ewickuhstatus1"></h6>
+                          <h6 id="ewickuhstatus2"></h6>
+                          <h6 id="ewickuhstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ewickuhenergy1"></h6>
+                          <h6 id="ewickuhenergy2"></h6>
+                          <h6 id="ewickuhenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ewickuhwr1"></h6>
+                          <h6 id="ewickuhwr2"></h6>
+                          <h6 id="ewickuhwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/374936')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#ewickuhenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#ewickuhstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#ewickuhwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/374599')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ewickuhenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#ewickuhstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#ewickuhwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/374304')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ewickuhenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#ewickuhstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#ewickuhwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Bummy Chakito#9077
+                          <p class="text-xs text-secondary mb-0">RBV | Bummy Chakito</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x3B0697544A0Bf10Bf286195A328C7900D78BcB4d</td>
+                        <td>
+                          <h6>387311</h6>
+                          <h6>387286</h6>
+                          <h6>387217</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="bummychakitostatus1"></h6>
+                          <h6 id="bummychakitostatus2"></h6>
+                          <h6 id="bummychakitostatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="bummychakitoenergy1"></h6>
+                          <h6 id="bummychakitoenergy2"></h6>
+                          <h6 id="bummychakitoenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="bummychakitowr1"></h6>
+                          <h6 id="bummychakitowr2"></h6>
+                          <h6 id="bummychakitowr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/387311')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#bummychakitoenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#bummychakitostatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#bummychakitowr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387286')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#bummychakitoenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#bummychakitostatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#bummychakitowr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387217')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#bummychakitoenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#bummychakitostatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#bummychakitowr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Froi A.#2790
+                          <p class="text-xs text-secondary mb-0">RBV | Froi A.</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x311e93eA47DD6c6583578eDf62EFB657E3623551</td>
+                        <td>
+                          <h6>342248</h6>
+                          <h6>341422</h6>
+                          <h6>340745</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="froiastatus1"></h6>
+                          <h6 id="froiastatus2"></h6>
+                          <h6 id="froiastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="froiaenergy1"></h6>
+                          <h6 id="froiaenergy2"></h6>
+                          <h6 id="froiaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="froiawr1"></h6>
+                          <h6 id="froiawr2"></h6>
+                          <h6 id="froiawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/342248')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#froiaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#froiastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#froiawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/341422')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#froiaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#froiastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#froiawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/340745')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#froiaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#froiastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#froiawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>tzuyu#8609
+                          <p class="text-xs text-secondary mb-0">RBV | cyril</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x890bdDAd101CAeB88b48dE6F737392956657162b</td>
+                        <td>
+                          <h6>108726</h6>
+                          <h6>93069</h6>
+                          <h6></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="cyrilstatus1"></h6>
+                          <h6 id="cyrilstatus2"></h6>
+                          <h6 id="cyrilstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="cyrilenergy1"></h6>
+                          <h6 id="cyrilenergy2"></h6>
+                          <h6 id="cyrilenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="cyrilwr1"></h6>
+                          <h6 id="cyrilwr2"></h6>
+                          <h6 id="cyrilwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/108726')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#cyrilenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#cyrilstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#cyrilwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/93069')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#cyrilenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#cyrilstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#cyrilwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#cyrilenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#cyrilstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#cyrilwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>RBV | 𝙀𝘾𝙃𝙊#3196
+                          <p class="text-xs text-secondary mb-0">RBV | 𝙀𝘾𝙃𝙊</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xb8C8e20A30496d05341992904D44D861640b8378</td>
+                        <td>
+                          <h6>394522</h6>
+                          <h6>239974</h6>
+                          <h6>213885</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="echostatus1"></h6>
+                          <h6 id="echostatus2"></h6>
+                          <h6 id="echostatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="echoenergy1"></h6>
+                          <h6 id="echoenergy2"></h6>
+                          <h6 id="echoenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="echowr1"></h6>
+                          <h6 id="echowr2"></h6>
+                          <h6 id="echowr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/394522')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#echoenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#echostatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#echowr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/239974')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#echoenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#echostatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#echowr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/213885')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#echoenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#echostatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#echowr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>danielle#1247
+                          <p class="text-xs text-secondary mb-0">RBV | danielle</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x8938e49A6f97014f64BFf305B0F8f3C570339003</td>
+                        <td>
+                          <h6>403782</h6>
+                          <h6>403769</h6>
+                          <h6>387085</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="danielestatus1"></h6>
+                          <h6 id="danielestatus2"></h6>
+                          <h6 id="danielestatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="danieleenergy1"></h6>
+                          <h6 id="danieleenergy2"></h6>
+                          <h6 id="danieleenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="danielewr1"></h6>
+                          <h6 id="danielewr2"></h6>
+                          <h6 id="danielewr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/403782')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#danieleenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#danielestatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#danielewr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/403769')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#danieleenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#danielestatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#danielewr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387085')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#danieleenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#danielestatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#danielewr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Erina Nakiri#2236
+                          <p class="text-xs text-secondary mb-0">RBV | Erina</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x158F53e1cf69E4c6345B2C46c41fEBA505F5Ac48</td>
+                        <td>
+                          <h6>370790</h6>
+                          <h6>370784</h6>
+                          <h6>370521</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="erinastatus1"></h6>
+                          <h6 id="erinastatus2"></h6>
+                          <h6 id="erinastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="erinaenergy1"></h6>
+                          <h6 id="erinaenergy2"></h6>
+                          <h6 id="erinaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="erinawr1"></h6>
+                          <h6 id="erinawr2"></h6>
+                          <h6 id="erinawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/370790')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#erinaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#erinastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#erinawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/370784')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#erinaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#erinastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#erinawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/370521')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#erinaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#erinastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#erinawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Grita#3061
+                          <p class="text-xs text-secondary mb-0">RBV | Grita</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xE269A29B3763656837Ba8f970F9331becF5c0829</td>
+                        <td>
+                          <h6>356008</h6>
+                          <h6>356000</h6>
+                          <h6>355991</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gritastatus1"></h6>
+                          <h6 id="gritastatus2"></h6>
+                          <h6 id="gritastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gritaenergy1"></h6>
+                          <h6 id="gritaenergy2"></h6>
+                          <h6 id="gritaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gritawr1"></h6>
+                          <h6 id="gritawr2"></h6>
+                          <h6 id="gritawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/356008')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#gritaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#gritastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#gritawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/356000')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#gritaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#gritastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#gritawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/355991')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#gritaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#gritastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#gritawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Guren#4312
+                          <p class="text-xs text-secondary mb-0">RBV | Guren</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x6fC37Fdeef6D4f0090C9b51c7765c334E411dcDe</td>
+                        <td>
+                          <h6>409222</h6>
+                          <h6>409207</h6>
+                          <h6>409197</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gurenstatus1"></h6>
+                          <h6 id="gurenstatus2"></h6>
+                          <h6 id="gurenstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gurenenergy1"></h6>
+                          <h6 id="gurenenergy2"></h6>
+                          <h6 id="gurenenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="gurenwr1"></h6>
+                          <h6 id="gurenwr2"></h6>
+                          <h6 id="gurenwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/409222')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#gurenenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#gurenstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#gurenwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/409207')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#gurenenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#gurenstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#gurenwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/409197')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#gurenenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#gurenstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#gurenwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Hoshi#3176
+                          <p class="text-xs text-secondary mb-0">RBV | Hoshi</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xc52D4aECB62BF041E2BA3928530751D953c60110</td>
+                        <td>
+                          <h6>338997</h6>
+                          <h6>338961</h6>
+                          <h6>343399</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hoshistatus1"></h6>
+                          <h6 id="hoshistatus2"></h6>
+                          <h6 id="hoshistatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hoshienergy1"></h6>
+                          <h6 id="hoshienergy2"></h6>
+                          <h6 id="hoshienergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hoshiwr1"></h6>
+                          <h6 id="hoshiwr2"></h6>
+                          <h6 id="hoshiwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/338997')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#hoshienergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#hoshistatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#hoshiwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/338961')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#hoshienergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#hoshistatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#hoshiwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/343399')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#hoshienergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#hoshistatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#hoshiwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>RBV | Hakumen#0829
+                          <p class="text-xs text-secondary mb-0">RBV | Hakumen</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x081302823CBf5000A005c1fd212B285b974b9198</td>
+                        <td>
+                          <h6>437241</h6>
+                          <h6>435205</h6>
+                          <h6>435188</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hakumenstatus1"></h6>
+                          <h6 id="hakumenstatus2"></h6>
+                          <h6 id="hakumenstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hakumenenergy1"></h6>
+                          <h6 id="hakumenenergy2"></h6>
+                          <h6 id="hakumenenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="hakumenwr1"></h6>
+                          <h6 id="hakumenwr2"></h6>
+                          <h6 id="hakumenwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/437241')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#hakumenenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#hakumenstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#hakumenwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/435205')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#hakumenenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#hakumenstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#hakumenwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/435188')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#hakumenenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#hakumenstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#hakumenwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Ian Black#7232
+                          <p class="text-xs text-secondary mb-0">RBV | Ian</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xa5d879925f11678D69d4Bb4df45A67dec9792E8a</td>
+                        <td>
+                          <h6>397231</h6>
+                          <h6>397218</h6>
+                          <h6>396766</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ianstatus1"></h6>
+                          <h6 id="ianstatus2"></h6>
+                          <h6 id="ianstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ianenergy1"></h6>
+                          <h6 id="ianenergy2"></h6>
+                          <h6 id="ianenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ianwr1"></h6>
+                          <h6 id="ianwr2"></h6>
+                          <h6 id="ianwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/397231')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#ianenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#ianstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#ianwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/397218')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ianenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#ianstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#ianwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/396766')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ianenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#ianstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#ianwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Issa#3820
+                          <p class="text-xs text-secondary mb-0">RBV | Issa</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xF3A1d7666D5A8cc37d57923556FBd054BC53235A</td>
+                        <td>
+                          <h6>378407</h6>
+                          <h6>378387</h6>
+                          <h6>369308</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="issastatus1"></h6>
+                          <h6 id="issastatus2"></h6>
+                          <h6 id="issastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="issaenergy1"></h6>
+                          <h6 id="issaenergy2"></h6>
+                          <h6 id="issaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="issawr1"></h6>
+                          <h6 id="issawr2"></h6>
+                          <h6 id="issawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/378407')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#issaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#issastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#issawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/378387')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#issaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#issastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#issawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/369308')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#issaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#issastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#issawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>JackisBack#9801
+                          <p class="text-xs text-secondary mb-0">RBV | Jack</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x19cA3129999c30a63Cc88be32dEaB60ad0ffBe3E</td>
+                        <td>
+                          <h6>403164</h6>
+                          <h6>403133</h6>
+                          <h6>396523</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jckstatus1"></h6>
+                          <h6 id="jckstatus2"></h6>
+                          <h6 id="jckstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jckenergy1"></h6>
+                          <h6 id="jckenergy2"></h6>
+                          <h6 id="jckenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jckwr1"></h6>
+                          <h6 id="jckwr2"></h6>
+                          <h6 id="jckwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/403164')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#jckenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#jckstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#jckwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/403133')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jckenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#jckstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#jckwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/396523')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jckenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#jckstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#jckwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Jano#2089
+                          <p class="text-xs text-secondary mb-0">RBV | Jano</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x41D7667967CE06BF7f6DE19Cf10f02ea7B139d6A</td>
+                        <td>
+                          <h6>182913</h6>
+                          <h6>329485</h6>
+                          <h6>237566</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jnostatus1"></h6>
+                          <h6 id="jnostatus2"></h6>
+                          <h6 id="jnostatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jnoenergy1"></h6>
+                          <h6 id="jnoenergy2"></h6>
+                          <h6 id="jnoenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jnowr1"></h6>
+                          <h6 id="jnowr2"></h6>
+                          <h6 id="jnowr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/182913')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#jnoenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#jnostatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#jnowr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/329485')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jnoenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#jnostatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#jnowr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/237566')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jnoenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#jnostatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#jnowr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>JayEl#9635
+                          <p class="text-xs text-secondary mb-0">RBV | JayEl</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x4c8d33B6CED9D25B35DaD88289bD624d33f517E5</td>
+                        <td>
+                          <h6>387743</h6>
+                          <h6>387684</h6>
+                          <h6>366706</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jyelstatus1"></h6>
+                          <h6 id="jyelstatus2"></h6>
+                          <h6 id="jyelstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jyelenergy1"></h6>
+                          <h6 id="jyelenergy2"></h6>
+                          <h6 id="jyelenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jyelwr1"></h6>
+                          <h6 id="jyelwr2"></h6>
+                          <h6 id="jyelwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/387743')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#jyelenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#jyelstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#jyelwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387684')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jyelenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#jyelstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#jyelwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/366706')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jyelenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#jyelstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#jyelwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Jheremie#7466
+                          <p class="text-xs text-secondary mb-0">RBV | Jheremie</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x4d728271DE2C9eD746BAE734c83dbDBc4584F7B7</td>
+                        <td>
+                          <h6>339004</h6>
+                          <h6>402929</h6>
+                          <h6>379440</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jheremiestatus1"></h6>
+                          <h6 id="jheremiestatus2"></h6>
+                          <h6 id="jheremiestatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jheremieenergy1"></h6>
+                          <h6 id="jheremieenergy2"></h6>
+                          <h6 id="jheremieenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="jheremiewr1"></h6>
+                          <h6 id="jheremiewr2"></h6>
+                          <h6 id="jheremiewr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/339004')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#jheremieenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#jheremiestatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#jheremiewr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/402929')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jheremieenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#jheremiestatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#jheremiewr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/379440')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#jheremieenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#jheremiestatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#jheremiewr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>king Z#1396
+                          <p class="text-xs text-secondary mb-0">RBV | king Z</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xC751512C8C06315A25dC5379dEA6C769F20c596d</td>
+                        <td>
+                          <h6>403896</h6>
+                          <h6>409791</h6>
+                          <h6>409802</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kingzstatus1"></h6>
+                          <h6 id="kingzstatus2"></h6>
+                          <h6 id="kingzstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kingzenergy1"></h6>
+                          <h6 id="kingzenergy2"></h6>
+                          <h6 id="kingzenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kingzwr1"></h6>
+                          <h6 id="kingzwr2"></h6>
+                          <h6 id="kingzwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/403896')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#kingzenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#kingzstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#kingzwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/409791')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kingzenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#kingzstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#kingzwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/409802')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kingzenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#kingzstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#kingzwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Klein#7536
+                          <p class="text-xs text-secondary mb-0">RBV | Klein</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xa1b7378adF598071ceD7f36acfdeFcbBEB930Ad7</td>
+                        <td>
+                          <h6>343683</h6>
+                          <h6>343612</h6>
+                          <h6>343566</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kleinstatus1"></h6>
+                          <h6 id="kleinstatus2"></h6>
+                          <h6 id="kleinstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kleinenergy1"></h6>
+                          <h6 id="kleinenergy2"></h6>
+                          <h6 id="kleinenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kleinwr1"></h6>
+                          <h6 id="kleinwr2"></h6>
+                          <h6 id="kleinwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/343683')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#kleinenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#kleinstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#kleinwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/343612')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kleinenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#kleinstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#kleinwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/343566')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kleinenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#kleinstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#kleinwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Kobe#3762
+                          <p class="text-xs text-secondary mb-0">RBV | Kobe</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x20Cdb262223915CfaC2bF1f4D466D30D0DE86526</td>
+                        <td>
+                          <h6>418905</h6>
+                          <h6>418890</h6>
+                          <h6>418862</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kobestatus1"></h6>
+                          <h6 id="kobestatus2"></h6>
+                          <h6 id="kobestatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kobeenergy1"></h6>
+                          <h6 id="kobeenergy2"></h6>
+                          <h6 id="kobeenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="kobewr1"></h6>
+                          <h6 id="kobewr2"></h6>
+                          <h6 id="kobewr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/418905')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#kobeenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#kobestatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#kobewr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/418890')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kobeenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#kobestatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#kobewr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/418862')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#kobeenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#kobestatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#kobewr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Maemae#8069
+                          <p class="text-xs text-secondary mb-0">RBV | Maemae</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x5bA83eb53D1f20CC81e84EA8AC360A605e664C96</td>
+                        <td>
+                          <h6>138265</h6>
+                          <h6>112838</h6>
+                          <h6>85028</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="maemaestatus1"></h6>
+                          <h6 id="maemaestatus2"></h6>
+                          <h6 id="maemaestatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="maemaeenergy1"></h6>
+                          <h6 id="maemaeenergy2"></h6>
+                          <h6 id="maemaeenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="maemaewr1"></h6>
+                          <h6 id="maemaewr2"></h6>
+                          <h6 id="maemaewr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/138265')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#maemaeenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#maemaestatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#maemaewr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/112838')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#maemaeenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#maemaestatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#maemaewr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/85028')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#maemaeenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#maemaestatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#maemaewr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>A 15 | Mariz#1496
+                          <p class="text-xs text-secondary mb-0">RBV | Mariz</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xEbe5f46136736fef1e0749B8f3f305Bd4c83DC5f</td>
+                        <td>
+                          <h6>371637</h6>
+                          <h6>343536</h6>
+                          <h6>343375</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="marizstatus1"></h6>
+                          <h6 id="marizstatus2"></h6>
+                          <h6 id="marizstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="marizenergy1"></h6>
+                          <h6 id="marizenergy2"></h6>
+                          <h6 id="marizenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="marizwr1"></h6>
+                          <h6 id="marizwr2"></h6>
+                          <h6 id="marizwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/371637')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#marizenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#marizstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#marizwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/343536')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#marizenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#marizstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#marizwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/343375')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#marizenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#marizstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#marizwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Meepmop#1240
+                          <p class="text-xs text-secondary mb-0">RBV | Meepmop</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x33aFc4A2C28b02F24e0B49688f0285df6c9dbc90</td>
+                        <td>
+                          <h6>281094</h6>
+                          <h6>279823</h6>
+                          <h6>342288</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meepmopstatus1"></h6>
+                          <h6 id="meepmopstatus2"></h6>
+                          <h6 id="meepmopstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meepmopenergy1"></h6>
+                          <h6 id="meepmopenergy2"></h6>
+                          <h6 id="meepmopenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meepmopwr1"></h6>
+                          <h6 id="meepmopwr2"></h6>
+                          <h6 id="meepmopwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/281094')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#meepmopenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#meepmopstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#meepmopwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/279823')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#meepmopenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#meepmopstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#meepmopwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/342288')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#meepmopenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#meepmopstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#meepmopwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Marckyy#8454
+                          <p class="text-xs text-secondary mb-0">RBV | Meow</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xf0fB428f0CFaE570A60Ea402b89e47708Eb3FE0f</td>
+                        <td>
+                          <h6>346641</h6>
+                          <h6>346407</h6>
+                          <h6>346401</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meowstatus1"></h6>
+                          <h6 id="meowstatus2"></h6>
+                          <h6 id="meowstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meowenergy1"></h6>
+                          <h6 id="meowenergy2"></h6>
+                          <h6 id="meowenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="meowwr1"></h6>
+                          <h6 id="meowwr2"></h6>
+                          <h6 id="meowwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/346641')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#meowenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#meowstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#meowwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/346407')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#meowenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#meowstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#meowwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/346401')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#meowenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#meowstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#meowwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>myoui#4404
+                          <p class="text-xs text-secondary mb-0">RBV | myoui</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x3493f90146ce1F5dCa60aA97C570cb182927d0Eb</td>
+                        <td>
+                          <h6>394387</h6>
+                          <h6>393820</h6>
+                          <h6>393698</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="myouistatus1"></h6>
+                          <h6 id="myouistatus2"></h6>
+                          <h6 id="myouistatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="myouienergy1"></h6>
+                          <h6 id="myouienergy2"></h6>
+                          <h6 id="myouienergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="myouiwr1"></h6>
+                          <h6 id="myouiwr2"></h6>
+                          <h6 id="myouiwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/394387')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#myouienergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#myouistatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#myouiwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/393820')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#myouienergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#myouistatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#myouiwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/393698')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#myouienergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#myouistatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#myouiwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Nich#9852
+                          <p class="text-xs text-secondary mb-0">RBV | Nich</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x3745C10CAAb13b2f8E8C371c98Aa145bD6707802</td>
+                        <td>
+                          <h6>371995</h6>
+                          <h6>371898</h6>
+                          <h6>371802</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="nichstatus1"></h6>
+                          <h6 id="nichstatus2"></h6>
+                          <h6 id="nichstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="nichenergy1"></h6>
+                          <h6 id="nichenergy2"></h6>
+                          <h6 id="nichenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="nichwr1"></h6>
+                          <h6 id="nichwr2"></h6>
+                          <h6 id="nichwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/371995')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#nichenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#nichstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#nichwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/371898')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#nichenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#nichstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#nichwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/371802')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#nichenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#nichstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#nichwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Ozone#6738
+                          <p class="text-xs text-secondary mb-0">RBV | Ozone</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x32F4Fe584aBCdB8775c62097EA826E56c0E74CB5</td>
+                        <td>
+                          <h6>282021</h6>
+                          <h6>281404</h6>
+                          <h6>108836</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ozonestatus1"></h6>
+                          <h6 id="ozonestatus2"></h6>
+                          <h6 id="ozonestatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ozoneenergy1"></h6>
+                          <h6 id="ozoneenergy2"></h6>
+                          <h6 id="ozoneenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="ozonewr1"></h6>
+                          <h6 id="ozonewr2"></h6>
+                          <h6 id="ozonewr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/282021')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#ozoneenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#ozonestatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#ozonewr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/281404')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ozoneenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#ozonestatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#ozonewr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/108836')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#ozoneenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#ozonestatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#ozonewr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Pacifico Merwin#3425
+                          <p class="text-xs text-secondary mb-0">RBV | Pacifico</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x6B75Af84Fc1A38644BC062Bdd4b1368b32D468b7</td>
+                        <td>
+                          <h6>389102</h6>
+                          <h6>392892</h6>
+                          <h6>387950</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="pacificostatus1"></h6>
+                          <h6 id="pacificostatus2"></h6>
+                          <h6 id="pacificostatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="pacificoenergy1"></h6>
+                          <h6 id="pacificoenergy2"></h6>
+                          <h6 id="pacificoenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="pacificowr1"></h6>
+                          <h6 id="pacificowr2"></h6>
+                          <h6 id="pacificowr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/389102')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#pacificoenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#pacificostatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#pacificowr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/392892')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#pacificoenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#pacificostatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#pacificowr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387950')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#pacificoenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#pacificostatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#pacificowr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Rayana#6835
+                          <p class="text-xs text-secondary mb-0">RBV | Rayana</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x9608c5C3854da617B28A3AceEaC937EA94cDA00C</td>
+                        <td>
+                          <h6>367531</h6>
+                          <h6>371471</h6>
+                          <h6>371490</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rayanastatus1"></h6>
+                          <h6 id="rayanastatus2"></h6>
+                          <h6 id="rayanastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rayanaenergy1"></h6>
+                          <h6 id="rayanaenergy2"></h6>
+                          <h6 id="rayanaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rayanawr1"></h6>
+                          <h6 id="rayanawr2"></h6>
+                          <h6 id="rayanawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/367531')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#rayanaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#rayanastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#rayanawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/371471')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rayanaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#rayanastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#rayanawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/371490')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rayanaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#rayanastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#rayanawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Rindo#8659
+                          <p class="text-xs text-secondary mb-0">RBV | Rindo</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x41ba351E152317058b9abAD5f90E731d864a778d</td>
+                        <td>
+                          <h6>410841</h6>
+                          <h6>410820</h6>
+                          <h6>404205</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rindostatus1"></h6>
+                          <h6 id="rindostatus2"></h6>
+                          <h6 id="rindostatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rindoenergy1"></h6>
+                          <h6 id="rindoenergy2"></h6>
+                          <h6 id="rindoenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rindowr1"></h6>
+                          <h6 id="rindowr2"></h6>
+                          <h6 id="rindowr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/410841')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#rindoenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#rindostatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#rindowr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/410820')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rindoenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#rindostatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#rindowr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/404205')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rindoenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#rindostatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#rindowr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>rozu#6167
+                          <p class="text-xs text-secondary mb-0">RBV | rozu</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xd776c83fB78B16a7147119f0082a1cdD1968836C</td>
+                        <td>
+                          <h6>407714</h6>
+                          <h6>407680</h6>
+                          <h6>407645</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rozustatus1"></h6>
+                          <h6 id="rozustatus2"></h6>
+                          <h6 id="rozustatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rozuenergy1"></h6>
+                          <h6 id="rozuenergy2"></h6>
+                          <h6 id="rozuenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="rozuwr1"></h6>
+                          <h6 id="rozuwr2"></h6>
+                          <h6 id="rozuwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/407714')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#rozuenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#rozustatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#rozuwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/407680')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rozuenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#rozustatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#rozuwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/407645')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#rozuenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#rozustatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#rozuwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Rssl#0740
+                          <p class="text-xs text-secondary mb-0">RBV | Russ</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x0294bEb6DcF11eCf0d88b249732f3477f6e1834d</td>
+                        <td>
+                          <h6>387411</h6>
+                          <h6>387390</h6>
+                          <h6>108836</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="russstatus1"></h6>
+                          <h6 id="russstatus2"></h6>
+                          <h6 id="russstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="russenergy1"></h6>
+                          <h6 id="russenergy2"></h6>
+                          <h6 id="russenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="russwr1"></h6>
+                          <h6 id="russwr2"></h6>
+                          <h6 id="russwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/387411')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#russenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#russstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#russwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/387390')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#russenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#russstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#russwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/108836')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#russenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#russstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#russwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>shaileepuff#4763
+                          <p class="text-xs text-secondary mb-0">RBV | Shaileepuff</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xc0c35dbD7557645c0794072E880047cE59Ea5b5e </td>
+                        <td>
+                          <h6>365294</h6>
+                          <h6>365025</h6>
+                          <h6>356310</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shaileepuffstatus1"></h6>
+                          <h6 id="shaileepuffstatus2"></h6>
+                          <h6 id="shaileepuffstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shaileepuffenergy1"></h6>
+                          <h6 id="shaileepuffenergy2"></h6>
+                          <h6 id="shaileepuffenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shaileepuffwr1"></h6>
+                          <h6 id="shaileepuffwr2"></h6>
+                          <h6 id="shaileepuffwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/365294')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#shaileepuffenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#shaileepuffstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#shaileepuffwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/365025')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#shaileepuffenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#shaileepuffstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#shaileepuffwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/356310')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#shaileepuffenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#shaileepuffstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#shaileepuffwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>sheh#3590
+                          <p class="text-xs text-secondary mb-0">RBV | sheh</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x3e3A1B7b5119aae831A54C20c0D52818e2705F49</td>
+                        <td>
+                          <h6>411093</h6>
+                          <h6>411077</h6>
+                          <h6>411050</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shehstatus1"></h6>
+                          <h6 id="shehstatus2"></h6>
+                          <h6 id="shehstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shehenergy1"></h6>
+                          <h6 id="shehenergy2"></h6>
+                          <h6 id="shehenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="shehwr1"></h6>
+                          <h6 id="shehwr2"></h6>
+                          <h6 id="shehwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/411093')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#shehenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#shehstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#shehwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/411077')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#shehenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#shehstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#shehwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/411050')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#shehenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#shehstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#shehwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Stephanie Angel#3867
+                          <p class="text-xs text-secondary mb-0">RBV | Stephanie Angel</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x88eF70A9dC51E02Fdf57D1E5C1335c730d70e368</td>
+                        <td>
+                          <h6>351246</h6>
+                          <h6>352180</h6>
+                          <h6>351246</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="stephanieangelstatus1"></h6>
+                          <h6 id="stephanieangelstatus2"></h6>
+                          <h6 id="stephanieangelstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="stephanieangelenergy1"></h6>
+                          <h6 id="stephanieangelenergy2"></h6>
+                          <h6 id="stephanieangelenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="stephanieangelwr1"></h6>
+                          <h6 id="stephanieangelwr2"></h6>
+                          <h6 id="stephanieangelwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/351246')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#stephanieangelenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#stephanieangelstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#stephanieangelwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/352180')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#stephanieangelenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#stephanieangelstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#stephanieangelwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/351246')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#stephanieangelenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#stephanieangelstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#stephanieangelwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Talaba#6836
+                          <p class="text-xs text-secondary mb-0">RBV | Talaba</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xcF25F3913d556CD30239E51cFce7F8921183422b</td>
+                        <td>
+                          <h6>411743</h6>
+                          <h6>410529</h6>
+                          <h6>409778</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="talabastatus1"></h6>
+                          <h6 id="talabastatus2"></h6>
+                          <h6 id="talabastatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="talabaenergy1"></h6>
+                          <h6 id="talabaenergy2"></h6>
+                          <h6 id="talabaenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="talabawr1"></h6>
+                          <h6 id="talabawr2"></h6>
+                          <h6 id="talabawr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/411743')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#talabaenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#talabastatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#talabawr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/410529')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#talabaenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#talabastatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#talabawr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/409778')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#talabaenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#talabastatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#talabawr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>Timothyy#5175
+                          <p class="text-xs text-secondary mb-0">RBV | Timothyy</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xbD17664202B94e1c6cf7Ff90E0b2Ca19Cec9641E</td>
+                        <td>
+                          <h6>372134</h6>
+                          <h6>368511</h6>
+                          <h6>365691</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="timothyystatus1"></h6>
+                          <h6 id="timothyystatus2"></h6>
+                          <h6 id="timothyystatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="timothyyenergy1"></h6>
+                          <h6 id="timothyyenergy2"></h6>
+                          <h6 id="timothyyenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="timothyywr1"></h6>
+                          <h6 id="timothyywr2"></h6>
+                          <h6 id="timothyywr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/372134')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#timothyyenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#timothyystatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#timothyywr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/368511')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#timothyyenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#timothyystatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#timothyywr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/365691')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#timothyyenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#timothyystatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#timothyywr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>[ imfxŁi ]#0389
+                          <p class="text-xs text-secondary mb-0">RBV | It'smeXAVIER</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x06F2b2a583240cB0a15C4a144DA6355cB12c9cb0</td>
+                        <td>
+                          <h6>403445</h6>
+                          <h6>403458</h6>
+                          <h6>430234</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="xavierstatus1"></h6>
+                          <h6 id="xavierstatus2"></h6>
+                          <h6 id="xavierstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="xavierenergy1"></h6>
+                          <h6 id="xavierenergy2"></h6>
+                          <h6 id="xavierenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="xavierwr1"></h6>
+                          <h6 id="xavierwr2"></h6>
+                          <h6 id="xavierwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/403445')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#xavierenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#xavierstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#xavierwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/403458')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#xavierenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#xavierstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#xavierwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/430234')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#xavierenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#xavierstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#xavierwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>YUÈ SHÉN#9506
+                          <p class="text-xs text-secondary mb-0">RBV | YUÈ SHÉN</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0xae637BC7030C0e8Ee7ec2ffCDa21bFf7BdfF305F</td>
+                        <td>
+                          <h6>356758</h6>
+                          <h6>348560</h6>
+                          <h6></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yueshenstatus1"></h6>
+                          <h6 id="yueshenstatus2"></h6>
+                          <h6 id="yueshenstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yueshenenergy1"></h6>
+                          <h6 id="yueshenenergy2"></h6>
+                          <h6 id="yueshenenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yueshenwr1"></h6>
+                          <h6 id="yueshenwr2"></h6>
+                          <h6 id="yueshenwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/356758')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#yueshenenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#yueshenstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#yueshenwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/348560')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#yueshenenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#yueshenstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#yueshenwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#yueshenenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#yueshenstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#yueshenwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+ <tr>
+                        <td>yvan#7938
+                          <p class="text-xs text-secondary mb-0">RBV | yvan</p>
+                          <p class="text-xs font-weight-bold mb-0">JL</p>
+                        </td>
+                        <td>0x6A2b37AB16Ac787Bd7ae70eCf63FBb1Dd7E16803</td>
+                        <td>
+                          <h6>377720</h6>
+                          <h6>377703</h6>
+                          <h6>377571</h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yvanstatus1"></h6>
+                          <h6 id="yvanstatus2"></h6>
+                          <h6 id="yvanstatus3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yvanenergy1"></h6>
+                          <h6 id="yvanenergy2"></h6>
+                          <h6 id="yvanenergy3"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                          <h6 id="yvanwr1"></h6>
+                          <h6 id="yvanwr2"></h6>
+                          <h6 id="yvanwr3"></h6>
+                        </td>
+
+                        <script>
+                          fetch('https://api-apollo.pegaxy.io/v1/pegas/377720')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                        console.log(data);
+                        document.querySelector('#yvanenergy1').innerHTML=data.energy;'  ';
+                        document.querySelector('#yvanstatus1').innerHTML=data.inService;'  ';
+                        document.querySelector('#yvanwr1').innerHTML=data.winRate*100;'  ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/377703')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#yvanenergy2').innerHTML=data.energy;'  ';
+                        document.querySelector('#yvanstatus2').innerHTML=data.inService;'  ';
+                        document.querySelector('#yvanwr2').innerHTML=data.winRate*100;' ';
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                        <script>
+                        fetch('https://api-apollo.pegaxy.io/v1/pegas/377571')
+                        .then(response =>{
+                        return response.json();
+                        }).then(data =>{
+                          console.log(data);
+                        document.querySelector('#yvanenergy3').innerHTML=data.energy;'  ';
+                        document.querySelector('#yvanstatus3').innerHTML=data.inService;'  ';
+                        document.querySelector('#yvanwr3').innerHTML=data.winRate*100;' ';;
+                        
+                        }).catch(error=>{
+                        console.log(error);
+                        });
+                        </script>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Row-->
+
+          <!-- Documentation Link -->
+         
+
+        </div>
+        <!---Container Fluid-->
+      </div>
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+       
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/ruang-admin.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+  </script>
+
+</body>
+
+</html>
